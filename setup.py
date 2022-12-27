@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 HERE = pathlib.Path(__file__).parent
 
-VERSION = '0.0.3' #Muy importante, deberéis ir cambiando la versión de vuestra librería según incluyáis nuevas funcionalidades
+VERSION = '0.0.4' #Muy importante, deberéis ir cambiando la versión de vuestra librería según incluyáis nuevas funcionalidades
 PACKAGE_NAME = 'unumposit' #Debe coincidir con el nombre de la carpeta 
 AUTHOR = 'Stephany Valarezo Plaza' #Modificar con vuestros datos
 AUTHOR_EMAIL = 'stephanyvalarezo@gmail.com' #Modificar con vuestros datos
