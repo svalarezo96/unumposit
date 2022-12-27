@@ -6,4 +6,5 @@ unumposit/conversionposit.py
 unumposit.egg-info/PKG-INFO
 unumposit.egg-info/SOURCES.txt
 unumposit.egg-info/dependency_links.txt
+unumposit.egg-info/requires.txt
 unumposit.egg-info/top_level.txt

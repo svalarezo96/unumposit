@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: unumposit
-Version: 0.0.2
+Version: 0.0.3
 Summary: Library to be able to convert a posit number into a decimal, and a decimal to a posit number.
 Home-page: https://github.com/svalarezo96
 Author: Stephany Valarezo Plaza
