@@ -1,5 +1,4 @@
 import numpy as np
-import math
 
 
 class InvalidPositArgException (Exception):
@@ -146,16 +145,16 @@ def decimal_to_posit(decimal,N,es):
             posit.sign=s
 
             decimal_cut=np.clip(abs(decimal), minpos,maxpos)
-            logaritmo_dec= math.log(decimal_cut,2)
+            logaritmo_dec= np.log2(decimal_cut)
         
             exp=logaritmo_dec
-            k=int(math.floor(exp / (2**es)))   
-           
+            k=int(np.floor(exp / (2**es)))   
+
 
             if (logaritmo_dec<0):
-                k=(-1)*(math.ceil(abs(exp / (2**es))))            
+                k=(-1)*(np.ceil(abs(exp / (2**es))))            
             else:
-                k=int(math.floor(exp / (2**es)))   
+                k=int(np.floor(exp / (2**es)))   
 
             e=round(np.clip(abs(exp - k* (2**es)), 0, (2**(es))-1))
             
@@ -171,7 +170,7 @@ def decimal_to_posit(decimal,N,es):
 
             eb= min(N-1-rb,es)
             fb= max(N-1-rb-eb,0)
-            pe=(math.floor(e*(2**(eb-es)))) * 2**(es-eb)
+            pe=(np.floor(e*(2**(eb-es)))) * 2**(es-eb)
             pf=(round(f*(2**fb))) *(2**-fb)
 
 
