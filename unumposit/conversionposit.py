@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class InvalidPositArgException (Exception):
     pass
 
@@ -15,6 +14,9 @@ class Posit:
         self.regimeBits=0
         self.binaryFormat="00000000"
         self.decimalFormat=0
+        self.regime=0
+        self.exponent=0
+        self.mantisa=0
         
         if N!=8 and N!=16 and N!=32:
             print("N (number of bit) should be a number between: 8, 16 and 32")
@@ -190,7 +192,8 @@ def decimal_to_posit(decimal,N,es):
                 regime= regime +"0"
             
             posit.regimeBits=len(regime)
-        
+            posit.regime=k
+
             #exponente
             exponente=str(bin(int(abs(pe))))[2::]
             if len(exponente) < es:
@@ -217,7 +220,9 @@ def decimal_to_posit(decimal,N,es):
                 posit.binaryFormat= str(s) + BinaryOperations.twosComplement(regime + exponente + mantissa)
             else:
                 posit.binaryFormat= str(s) + regime + exponente + mantissa
-
+            
+            posit.mantisa= 1+ Conversions.binary_to_significant(mantissa)
+            posit.exponent=Conversions.binary_to_decimal(exponente)
             posit.decimalFormat = ((-1)**int(s)) *useed**(k) * 2 **Conversions.binary_to_decimal(exponente) * (1+ Conversions.binary_to_significant(mantissa))
             
         #return posit
@@ -241,7 +246,7 @@ def posit_to_decimal(positnum,N,es):
 
         #Get sign
         signo= (-1)**int(positnum[0])
-
+        posit.sign=int(positnum[0])
         if (signo<0):
             positnum=BinaryOperations.twosComplement(positnum)
         
@@ -250,6 +255,7 @@ def posit_to_decimal(positnum,N,es):
             for i in range(1,N):
                 if (positnum[i]=="1"):
                     posit_shift= positnum[i+1:N]
+                    posit.regimeBits=i
                     break
                 else:
                     sum_zeros+=1
@@ -258,18 +264,21 @@ def posit_to_decimal(positnum,N,es):
             for i in range(1,N):
                 if (positnum[i]=="0"):
                     posit_shift= positnum[i+1:N]
+                    posit.regimeBits=i
                     break
                 else:
                     sum_ones+=1
             regime=sum_ones-1
         
+        posit.regime=regime
         #Get exponent
         exponente = Conversions.binary_to_decimal(posit_shift[0:es])
-
+        posit.exponent=exponente
+        
         #Get mantissa
         mantissa_binary = posit_shift[es::]
         mantissa= 1+ Conversions.binary_to_significant(mantissa_binary)
-
+        posit.mantisa=mantissa
         #Get useed
         useed= 2**(2**es)
 
@@ -284,7 +293,3 @@ def posit_to_decimal(positnum,N,es):
     
     finally:
         return posit
-
-
-
-    
