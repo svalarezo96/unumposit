@@ -1,7 +1,7 @@
 import pathlib
 from setuptools import find_packages, setup
 
-#HERE = pathlib.Path(__file__).parent
+HERE = pathlib.Path(__file__).parent
 
 VERSION = '3.9.15' #Muy importante, deberéis ir cambiando la versión de vuestra librería según incluyáis nuevas funcionalidades
 PACKAGE_NAME = 'unumposit' #Debe coincidir con el nombre de la carpeta 
@@ -11,8 +11,8 @@ URL = 'https://github.com/svalarezo96' #Modificar con vuestros datos
 
 LICENSE = 'MIT' #Tipo de licencia
 DESCRIPTION = 'Library to be able to convert a posit number into a decimal, and a decimal to a posit number.' #Descripción corta
-#LONG_DESCRIPTION = (HERE / "README.md").read_text(encoding='utf-8') #Referencia al documento README con una descripción más elaborada
-LONG_DESCRIPTION=open('README.md').read(),
+LONG_DESCRIPTION = (HERE / "README.md").read_text(encoding='utf-8') #Referencia al documento README con una descripción más elaborada
+#LONG_DESCRIPTION=open('README.md').read(),
 LONG_DESC_TYPE = "text/markdown"
 
 
