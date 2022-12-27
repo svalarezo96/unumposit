@@ -1,2 +1,59 @@
-# unumposit
+# Unumposit
 Library for posit numbers
+
+
+<!-- GETTING STARTED2 -->
+## Getting Started
+This pacakage is the first version of a conversor of posit numbers to decimal, and decimal to posit number.
+
+
+### Installation
+To install using pip (might require root priviledges):
+   ```sh
+   pip3 install "git+https://github.com/svalarezo96/unumposit.git"
+   ```
+
+### Prerequisites
+Importing the packcage unumposit
+  ```python
+  import unumposit as unp 
+  ```
+
+### To use
+
+<b>1. Convert posit to decimal</b>
+The <i>posit_to_decimal</i> function converts a posit number in binary format (string) to its decimal representation. Returns a posit object which returns:
+
+| Parameter | Description | Type |
+| --- | --- | --- |
+| N | Number of bits, the only acceptable numbers are: 8, 16 and 32 | int |
+| es | Exponent Bits | int |
+| sign | 0: positive, 1: negative | int |
+| regimeBits | Number of bits that the regime occupies | int |
+| regime | Regime in decimal representation | int |
+| exponent | Exponent in decimal representation | int |
+| mantisa | Mantisa in decimal representation | int |
+| binaryFormat | Binary representation of posit number | string |
+| decimalFormat | Decimal aproximation of posit number| float |
+
+```python
+  posit = unp.posit_to_decimal("01101100",8,2)
+  decimal = posit.decimalFormat
+  print(f"The decimal representation of the posit number: {posit.binaryFormat} is {decimal}")
+  print(f"The numerical representation of the regime is: {posit.regime}")
+  
+  ```
+
+
+<b>2. Convert posit to decimal</b>
+The <i>decimal_to_posit</i> function converts a decimal number (float) to its posit representation (aproximation). Returns a posit object which returns:
+
+```python
+  posit = unp.decimal_to_posit(122,8,2)
+  binary = posit.binaryFormat
+  print(f"The posit representation of 122 is: {posit.decimalFormat} in decimal and {binary} in binary format")
+  print(f"The numerical representation of the regime is: {posit.regime}")
+  
+  ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
